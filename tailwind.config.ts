@@ -23,8 +23,12 @@ const config: Config = {
         HighlightAux: "#2CB8E0",
 
         borderPrimary: "#DDE4EB",
-        grayScale50: "#F5F7FA"
+        "gray-scale-50": "#F5F7FA"
       }
+    },
+    fontFamily: {
+      inter: ["var(--font-inter)"],
+      rethink: ["var(--rethink-sans)"]
     }
   },
   plugins: []
