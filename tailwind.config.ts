@@ -14,16 +14,19 @@ const config: Config = {
         disabled: "#818D99",
 
         danger: "#EA1246",
-        dangerLight: "#FFEEF2",
+        "danger-light": "#FFEEF2",
 
         success: "#0ACE88",
-        successLight: "#EEFFF9",
+        "success-light": "#EEFFF9",
 
         highlight: "#695ACC",
-        HighlightAux: "#2CB8E0",
+        "Highlight-aux": "#2CB8E0",
 
-        borderPrimary: "#DDE4EB",
-        "gray-scale-50": "#F5F7FA"
+        "border-primary": "#DDE4EB",
+        "gray-scale-50": "#F5F7FA",
+
+        "hovered-light": "#FFFFFF29",
+        "hovered-dark": "#00000014"
       }
     },
     fontFamily: {
