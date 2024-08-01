@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${rethink_sans.variable}`}>
+      <body
+        className={`${inter.variable} ${rethink_sans.variable} bg-gray-scale-50`}
+      >
         {children}
       </body>
     </html>

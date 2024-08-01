@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-base::before,
+.button-base::after {
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  transition: 500ms;
+}
+
+.button-contained::before {
+  top: var(--y);
+  left: var(--x);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.button-contained:hover::before {
+  width: 225%;
+  height: 800%;
+}
+
+.button-outlined::before {
+  left: 0;
+  bottom: 0;
+}
+
+.button-outlined::after {
+  right: 0;
+  top: 0;
+}
+
+.button-outlined:hover::before,
+.button-outlined:hover::after {
+  height: 100%;
+  width: 100%;
+}
+
+.button-text::after {
+  left: 50%;
+  top: 22px;
+  transform: translate(-50%, -50%);
+}
+
+.button-text:hover::after {
+  height: 1px;
+  width: 100%;
+}
+
+.button-base:disabled::before,
+.button-base:disabled::after {
+  display: none;
+}

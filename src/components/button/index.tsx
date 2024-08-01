@@ -2,13 +2,17 @@
 import { ButtonHTMLAttributes, MouseEvent, useRef } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
+// Unfortunately, we can't do variant grouping in tailwind CSS.
+// So... I just used globals.css to style the "before" and "after"
+// of this component, as well as its hovers.
 const button = tv({
-  base: "flex px-4 py-3 rounded-lg font-rethink font-bold w-full gap-2 relative overflow-hidden before:duration-1000 before:absolute before:top-[var(--y)] before:left-[var(--x)] before:w-[0%] before:h-[0%] before:rounded-full hover:before:w-[225%] hover:before:h-[800%] before:-translate-x-1/2 before:-translate-y-1/2",
+  base: "button-base flex items-center gap-4 px-4 py-3 font-rethink font-bold relative overflow-hidden disabled:opacity-50",
   variants: {
     type: {
-      contained: "bg-primary before:bg-hovered-light",
-      outlined: "border border-borderPrimary before:bg-hovered-dark",
-      text: "before:bg-hovered-dark p-0 w-auto"
+      contained: "button-contained bg-primary rounded-lg",
+      outlined:
+        "button-outlined before:border-primary-border after:border-primary-border hover:before:border-l hover:before:border-b hover:after:border-t hover:after:border-r",
+      text: "button-text p-0 w-fit"
     },
     justify: {
       start: "justify-start",
@@ -16,17 +20,21 @@ const button = tv({
       end: "justify-end"
     },
     color: {
-      primary: "text-primary",
-      white: "text-white",
-      danger: "text-danger",
-      highlight: "text-highlight"
+      primary: "text-primary after:bg-primary",
+      white: "text-white before:bg-hovered-light",
+      danger: "text-danger after:bg-danger before:bg-hovered-dark",
+      highlight: "text-highlight after:bg-highlight after:ease-in"
     }
   },
   compoundVariants: [
     {
       type: "contained",
       color: "danger",
-      class: "bg-danger text-white before:bg-hovered-dark"
+      class: "bg-danger text-white"
+    },
+    {
+      type: "outlined",
+      class: "after:bg-opacity-0"
     }
   ],
 
@@ -43,6 +51,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({ variant, ...props }: ButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
+
+  function onMouseHover() {
+    if (variant?.type !== "outlined") return;
+    setTimeout(() => ref.current?.classList.toggle("before:rounded-lg"), 250);
+    setTimeout(() => ref.current?.classList.toggle("after:rounded-lg"), 250);
+  }
+
   function onMouseMove(e: MouseEvent<HTMLButtonElement | MouseEvent>) {
     const x = e.pageX - (ref.current?.offsetLeft || 0);
     const y = e.pageY - (ref.current?.offsetTop || 0);
@@ -55,6 +70,8 @@ const Button = ({ variant, ...props }: ButtonProps) => {
     <button
       {...props}
       ref={ref}
+      onMouseEnter={onMouseHover}
+      onMouseLeave={onMouseHover}
       onMouseMove={e => onMouseMove(e)}
       className={button(variant)}
     />
