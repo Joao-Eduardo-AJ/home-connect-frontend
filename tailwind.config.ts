@@ -22,7 +22,7 @@ const config: Config = {
         highlight: "#695ACC",
         "Highlight-aux": "#2CB8E0",
 
-        "primary-border": "#C9D0D6",
+        "primary-border": "#DDE4EB",
         "gray-scale-50": "#F5F7FA",
 
         "hovered-light": "#FFFFFF29",
