@@ -20,7 +20,7 @@ const config: Config = {
         "success-light": "#EEFFF9",
 
         highlight: "#695ACC",
-        "Highlight-aux": "#2CB8E0",
+        "highlight-aux": "#2CB8E0",
 
         "primary-border": "#DDE4EB",
         "gray-scale-50": "#F5F7FA",
