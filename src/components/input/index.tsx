@@ -44,11 +44,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const Input = ({ variant, label, ...props }: InputProps) => (
+export const Input = ({ variant, label, ...props }: InputProps) => (
   <label className={inputLabel(variant)}>
     <span className={span(variant)}>{label}</span>
     <input {...props} className={input(variant)} />
   </label>
 );
-
-export default Input;

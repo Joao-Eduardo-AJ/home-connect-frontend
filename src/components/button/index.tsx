@@ -9,9 +9,9 @@ const button = tv({
   base: "button-base flex items-center gap-4 px-4 py-3 font-rethink font-bold relative overflow-hidden disabled:opacity-50",
   variants: {
     type: {
-      contained: "button-contained bg-primary rounded-lg",
+      contained: "button-contained bg-primary rounded-lg w-full",
       outlined:
-        "button-outlined before:border-primary-border after:border-primary-border hover:before:border-l hover:before:border-b hover:after:border-t hover:after:border-r",
+        "button-outlined before:border-primary-border after:border-primary-border hover:before:border-l hover:before:border-b hover:after:border-t hover:after:border-r w-full",
       text: "button-text p-0 w-fit"
     },
     justify: {
@@ -24,6 +24,10 @@ const button = tv({
       white: "text-white before:bg-hovered-light",
       danger: "text-danger after:bg-danger before:bg-hovered-dark",
       highlight: "text-highlight after:bg-highlight after:ease-in"
+    },
+    size: {
+      default: "h-11",
+      bigger: ""
     }
   },
   compoundVariants: [
@@ -41,7 +45,8 @@ const button = tv({
   defaultVariants: {
     type: "contained",
     justify: "center",
-    color: "white"
+    color: "white",
+    size: "default"
   }
 });
 
@@ -49,7 +54,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: VariantProps<typeof button>;
 }
 
-const Button = ({ variant, ...props }: ButtonProps) => {
+export function Button({ variant, ...props }: ButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
 
   function onMouseHover() {
@@ -76,6 +81,4 @@ const Button = ({ variant, ...props }: ButtonProps) => {
       className={button(variant)}
     />
   );
-};
-
-export default Button;
+}
