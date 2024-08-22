@@ -12,7 +12,7 @@ const button = tv({
       contained: "button-contained bg-primary rounded-lg w-full",
       outlined:
         "button-outlined before:border-primary-border after:border-primary-border hover:before:border-l hover:before:border-b hover:after:border-t hover:after:border-r w-full",
-      text: "button-text w-full"
+      text: "button-text"
     },
     justify: {
       start: "justify-start",
@@ -78,7 +78,7 @@ export function Button({ variant, ...props }: ButtonProps) {
       onMouseEnter={onMouseHover}
       onMouseLeave={onMouseHover}
       onMouseMove={e => onMouseMove(e)}
-      className={button(variant)}
+      className={`${button(variant)} ${props.className}`}
     />
   );
 }

@@ -1,4 +1,6 @@
+import { MainListing } from "../_components";
+
 function Clients() {
-  return <main className="h-dvh w-full px-10 py-6">clients</main>;
+  return <MainListing>clients</MainListing>;
 }
 export default Clients;

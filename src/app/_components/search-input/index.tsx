@@ -16,12 +16,12 @@ export function SearchInput({ ...props }: InputProps) {
   return (
     <div
       ref={wrapperRef}
-      className="search-input-wrapper before:border-disabled after:bg-disabled relative z-10 flex h-11 rounded-lg bg-white focus:before:border-primary-border"
+      className="search-input-wrapper after:bg-disabled relative z-10 flex h-11 max-w-60 rounded-lg bg-white"
     >
       <input
         {...props}
         ref={inputRef}
-        className="focus text-disabled bg-[rgba(0,0,0,0)] px-4 text-sm outline-none"
+        className="bg-[rgba(0,0,0,0)] px-4 text-sm text-disabled-gray outline-none transition-all delay-100 duration-300"
         onFocus={() => handleFocus()}
         onBlur={() => handleBlur()}
       />

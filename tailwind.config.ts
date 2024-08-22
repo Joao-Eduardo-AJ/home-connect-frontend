@@ -11,9 +11,11 @@ const config: Config = {
       colors: {
         primary: "#13161A",
         secondary: "#606A73",
+        disabled: "#E5E7EB",
         "disabled-gray": "#818D99",
 
         danger: "#EA1246",
+
         "danger-light": "#FFEEF2",
 
         success: "#0ACE88",
@@ -34,7 +36,8 @@ const config: Config = {
       rethink: ["var(--rethink-sans)"]
     },
     animation: {
-      "bg-ball": "bg-ball 30s linear infinite alternate"
+      "bg-ball": "bg-ball 30s linear infinite alternate",
+      "bell-icon": "bell-icon .5s linear"
     },
     keyframes: {
       "bg-ball": {
@@ -48,6 +51,12 @@ const config: Config = {
         "80%": { top: "15%", left: "80%" },
         "90%": { top: "5%", left: "90%" },
         "100%": { top: "0%", left: "100%" }
+      },
+      "bell-icon": {
+        "25%": { rotate: "20deg" },
+        "50%": { rotate: "-20deg" },
+        "75%": { rotate: "20deg" },
+        "100%": { rotate: "0deg" }
       }
     }
   },

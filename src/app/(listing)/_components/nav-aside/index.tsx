@@ -7,6 +7,7 @@ import {
   UsersThree
 } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
+import { IconButton } from "../icon-button";
 
 export default function NavAside() {
   const router = useRouter();
@@ -25,20 +26,21 @@ export default function NavAside() {
             </Typography>
           </div>
         </div>
-        <button className="rounded-full p-3 transition-all duration-500 hover:bg-gray-scale-50">
+        <IconButton className="bg-white">
           <SidebarSimple size={20} />
-        </button>
+        </IconButton>
       </div>
       <nav>
         <Button
           variant={{ justify: "start" }}
           onClick={() => router.push("/users")}
         >
-          <UsersThree size={20} /> Users
+          <UsersThree size={20} weight="fill" /> Users
         </Button>
         <Button
           variant={{ type: "text", color: "primary", justify: "start" }}
           onClick={() => router.push("/clients")}
+          className="w-full after:left-2 after:top-[98%] after:translate-x-0"
         >
           <Handshake size={20} /> Clients
         </Button>
