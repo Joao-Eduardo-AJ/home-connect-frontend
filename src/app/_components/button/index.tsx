@@ -12,7 +12,7 @@ const button = tv({
       contained: "button-contained bg-primary rounded-lg w-full",
       outlined:
         "button-outlined before:border-primary-border after:border-primary-border hover:before:border-l hover:before:border-b hover:after:border-t hover:after:border-r w-full",
-      text: "button-text p-0 w-fit"
+      text: "button-text w-full"
     },
     justify: {
       start: "justify-start",
