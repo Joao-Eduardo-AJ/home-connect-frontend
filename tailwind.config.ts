@@ -6,11 +6,13 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
+
   theme: {
     extend: {
       colors: {
         primary: "#13161A",
         secondary: "#606A73",
+        tertiary: "#F9FAFA",
         disabled: "#E5E7EB",
         "disabled-gray": "#818D99",
 
@@ -29,34 +31,37 @@ const config: Config = {
 
         "hovered-light": "#FFFFFF29",
         "hovered-dark": "#00000014"
-      }
-    },
-    fontFamily: {
-      inter: ["var(--font-inter)"],
-      rethink: ["var(--rethink-sans)"]
-    },
-    animation: {
-      "bg-ball": "bg-ball 30s linear infinite alternate",
-      "bell-icon": "bell-icon .5s linear"
-    },
-    keyframes: {
-      "bg-ball": {
-        "10%": { top: "5%", left: "10%" },
-        "20%": { top: "10%", left: "20%" },
-        "30%": { top: "15%", left: "30%" },
-        "40%": { top: "15%", left: "40%" },
-        "50%": { top: "20%", left: "50%" },
-        "60%": { top: "20%", left: "60%" },
-        "70%": { top: "15%", left: "70%" },
-        "80%": { top: "15%", left: "80%" },
-        "90%": { top: "5%", left: "90%" },
-        "100%": { top: "0%", left: "100%" }
       },
-      "bell-icon": {
-        "25%": { rotate: "20deg" },
-        "50%": { rotate: "-20deg" },
-        "75%": { rotate: "20deg" },
-        "100%": { rotate: "0deg" }
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        rethink: ["var(--rethink-sans)"]
+      },
+      animation: {
+        "bg-ball": "bg-ball 30s linear infinite alternate",
+        "bell-icon": "bell-icon .5s linear"
+      },
+      keyframes: {
+        "bg-ball": {
+          "10%": { top: "5%", left: "10%" },
+          "20%": { top: "10%", left: "20%" },
+          "30%": { top: "15%", left: "30%" },
+          "40%": { top: "15%", left: "40%" },
+          "50%": { top: "20%", left: "50%" },
+          "60%": { top: "20%", left: "60%" },
+          "70%": { top: "15%", left: "70%" },
+          "80%": { top: "15%", left: "80%" },
+          "90%": { top: "5%", left: "90%" },
+          "100%": { top: "0%", left: "100%" }
+        },
+        "bell-icon": {
+          "25%": { rotate: "20deg" },
+          "50%": { rotate: "-20deg" },
+          "75%": { rotate: "20deg" },
+          "100%": { rotate: "0deg" }
+        }
+      },
+      screens: {
+        "1.5xl": "1440px"
       }
     }
   },

@@ -16,7 +16,7 @@ export function SearchInput({ ...props }: InputProps) {
   return (
     <div
       ref={wrapperRef}
-      className="search-input-wrapper after:bg-disabled relative z-10 flex h-11 max-w-60 rounded-lg bg-white"
+      className="search-input-wrapper relative z-10 flex h-11 max-w-60 rounded-lg bg-white after:bg-disabled"
     >
       <input
         {...props}
