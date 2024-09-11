@@ -5,7 +5,14 @@ import {
   PlusCircle,
   Trash
 } from "@phosphor-icons/react/dist/ssr";
-import { EmptyState, IconButton, MainListing, TablePagination, Table, TableCaption } from "../_components";
+import {
+  EmptyState,
+  IconButton,
+  MainListing,
+  TablePagination,
+  Table,
+  TableCaption
+} from "../_components";
 import { Button, SearchInput, Typography } from "@/app/_components";
 import { data } from "../_mock";
 import { useState } from "react";
