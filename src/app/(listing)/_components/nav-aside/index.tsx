@@ -13,7 +13,7 @@ export default function NavAside() {
   const router = useRouter();
 
   return (
-    <aside className="flex h-dvh min-w-[268px] flex-col gap-10 bg-white px-4 py-6 transition-all duration-300">
+    <aside className="flex min-w-[268px] flex-col gap-10 bg-white px-4 py-6 transition-all duration-300">
       <div className="flex items-center justify-between pl-3">
         <div className="flex">
           <Logo />

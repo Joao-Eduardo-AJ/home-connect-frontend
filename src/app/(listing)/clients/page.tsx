@@ -8,10 +8,10 @@ import {
 import {
   EmptyState,
   IconButton,
-  MainListing,
+  SectionListing,
   TablePagination,
   Table,
-  TableCaption
+  ButtonModalWrapper
 } from "../_components";
 import { Button, SearchInput, Typography } from "@/app/_components";
 import { useState } from "react";
@@ -38,8 +38,10 @@ function Clients() {
     setCheckedClients([...checkedClients]);
   }
 
+  const checkedCount = checkedClients.length;
+
   return (
-    <MainListing>
+    <SectionListing>
       <IconButton className="group self-end bg-gray-scale-50">
         <Bell
           size={20}
@@ -59,8 +61,31 @@ function Clients() {
       {!data.length ? (
         <EmptyState addRecord={() => console.log("")} />
       ) : (
-        <Table.Root captionOpened={!!checkedClients.length}>
-          <TableCaption records={checkedClients} />
+        <Table.Root captionOpened={!!checkedCount}>
+          <Table.Caption open={!!checkedCount}>
+            <Typography className="text-sm font-semibold">{`Selecionados: ${checkedCount}`}</Typography>
+            <div className="flex">
+              <ButtonModalWrapper buttonText={`Edit ( ${checkedCount} )`}>
+                <Typography variant="h6">{`${checkedCount} clients edited successfully`}</Typography>
+                <Button>Close</Button>
+              </ButtonModalWrapper>
+              <ButtonModalWrapper
+                variant={{ type: "delete" }}
+                buttonText={`Delete  ( ${checkedCount} )`}
+              >
+                <div className="flex flex-col gap-3">
+                  <Typography variant="h6">{`Delete ${checkedCount} clients`}</Typography>
+                  <Typography variant="p">{`Are you sure you want to delete ${checkedCount} clients?`}</Typography>
+                </div>
+                <div className="flex w-full gap-[14px]">
+                  <Button variant={{ type: "outlined", color: "primary" }}>
+                    Cancel
+                  </Button>
+                  <Button variant={{ color: "danger" }}>{`Delete`}</Button>
+                </div>
+              </ButtonModalWrapper>
+            </div>
+          </Table.Caption>
           <thead>
             <tr className="bg-white">
               <th className="rounded-tl-lg pl-6 pr-3">
@@ -81,21 +106,21 @@ function Clients() {
             </tr>
           </thead>
           <tbody>
-            {data.map((user, index) => (
+            {data.map((client, index) => (
               <Table.Row key={index}>
                 <td className="pl-6 pr-3 text-center">
                   <input
                     type="checkbox"
-                    checked={checkedClients.includes(user.id)}
-                    onChange={() => handleCheckedClients(user.id)}
+                    checked={checkedClients.includes(client.id)}
+                    onChange={() => handleCheckedClients(client.id)}
                   />
                 </td>
-                <Table.Data>{user.name}</Table.Data>
-                <Table.Data>{user.cpf}</Table.Data>
-                <Table.Data>{user.birthdate}</Table.Data>
-                <Table.Data>{user.phoneNumber}</Table.Data>
-                <Table.Data>{user.email}</Table.Data>
-                <Table.Data>{user.address}</Table.Data>
+                <Table.Data>{client.name}</Table.Data>
+                <Table.Data>{client.cpf}</Table.Data>
+                <Table.Data>{client.birthdate}</Table.Data>
+                <Table.Data>{client.phoneNumber}</Table.Data>
+                <Table.Data>{client.email}</Table.Data>
+                <Table.Data>{client.address}</Table.Data>
                 <td className="flex gap-2 py-0 pl-3 pr-6">
                   <IconButton className="group">
                     <PencilSimple
@@ -116,7 +141,7 @@ function Clients() {
         </Table.Root>
       )}
       <TablePagination count={300} />
-    </MainListing>
+    </SectionListing>
   );
 }
 export default Clients;

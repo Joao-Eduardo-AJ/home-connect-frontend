@@ -56,14 +56,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ variant, ...props }: ButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
+  const type = variant?.type;
 
   function onMouseHover() {
-    if (variant?.type !== "outlined") return;
+    if (type !== "outlined") return;
     setTimeout(() => ref.current?.classList.toggle("before:rounded-lg"), 250);
     setTimeout(() => ref.current?.classList.toggle("after:rounded-lg"), 250);
   }
 
   function onMouseMove(e: MouseEvent<HTMLButtonElement | MouseEvent>) {
+    if (!!type && type !== "contained") return;
     const x = e.pageX - (ref.current?.offsetLeft || 0);
     const y = e.pageY - (ref.current?.offsetTop || 0);
 
