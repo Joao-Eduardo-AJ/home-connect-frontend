@@ -2,11 +2,11 @@ import { InputHTMLAttributes } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const inputLabel = tv({
-  base: "flex text-sm text-primary font-rethink",
+  base: "flex text-sm text-primary font-rethink whitespace-nowrap",
   variants: {
     type: {
       outlined: "flex-col",
-      text: "items-center"
+      text: "items-center border-b last:border-0"
     }
   },
   defaultVariants: {
@@ -27,10 +27,10 @@ const span = tv({
 });
 
 const input = tv({
-  base: "px-4 py-3 rounded-lg font-light outline-none",
+  base: "pl-4 py-3 font-light outline-none w-full",
   variants: {
     type: {
-      outlined: "border border-primary-border h-11",
+      outlined: "border border-primary-border h-11 rounded-lg",
       text: "text-end bg-[rgba(0,0,0,0)] h-[42px]"
     }
   },

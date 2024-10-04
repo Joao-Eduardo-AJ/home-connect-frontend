@@ -10,7 +10,7 @@ const typography = tv({
     }
   }
 });
-interface TypographyProps extends HtmlHTMLAttributes<HTMLParagraphElement> {
+interface ITypography extends HtmlHTMLAttributes<HTMLParagraphElement> {
   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "strong" | "span";
 }
 
@@ -18,7 +18,7 @@ export function Typography({
   variant: Element = "p",
   children,
   ...props
-}: TypographyProps) {
+}: ITypography) {
   const Tag = Element;
   const isHeader =
     Element !== "p" && Element !== "strong" && Element !== "span";

@@ -50,11 +50,11 @@ const button = tv({
   }
 });
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: VariantProps<typeof button>;
 }
 
-export function Button({ variant, ...props }: ButtonProps) {
+export function Button({ variant, ...props }: IButton) {
   const ref = useRef<HTMLButtonElement>(null);
   const type = variant?.type;
 

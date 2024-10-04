@@ -1,10 +1,12 @@
 import { ButtonHTMLAttributes } from "react";
 
-export const IconButton = ({
-  ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) => (
+interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: "small" | "medium";
+}
+
+export const IconButton = ({ size, ...props }: IconButtonProps) => (
   <button
     {...props}
-    className={`rounded-full p-3 transition-all duration-500 hover:brightness-95 ${props.className}`}
+    className={`rounded-full ${size === "medium" ? "p-3" : "p-2"} transition-all duration-500 hover:brightness-95 ${props.className}`}
   />
 );

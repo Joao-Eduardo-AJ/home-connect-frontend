@@ -42,7 +42,7 @@ export const Data = ({
   children,
   ...props
 }: HtmlHTMLAttributes<HTMLParagraphElement>) => (
-  <td className="max-w-24 px-3 py-0 xl:max-w-32 1.5xl:max-w-40 2xl:max-w-full">
+  <td className="max-w-24 px-3 xl:max-w-32 1.5xl:max-w-40 2xl:max-w-full">
     <Typography {...props} className="truncate text-sm font-semibold">
       {children}
     </Typography>
