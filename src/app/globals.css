@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #DDE4EB;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
+}
+
 .button-base::before,
 .button-base::after {
   position: absolute;
