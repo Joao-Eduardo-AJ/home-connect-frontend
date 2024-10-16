@@ -7,6 +7,6 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const IconButton = ({ size, ...props }: IconButtonProps) => (
   <button
     {...props}
-    className={`rounded-full ${size === "medium" ? "p-3" : "p-2"} transition-all duration-500 hover:brightness-95 ${props.className}`}
+    className={`rounded-full ${size === "medium" ? "p-3" : "p-2"} transition-all duration-500 hover:brightness-95 ${props.className} disabled:appearance-none disabled:opacity-50`}
   />
 );

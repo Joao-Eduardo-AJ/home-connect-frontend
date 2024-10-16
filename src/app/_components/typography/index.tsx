@@ -5,7 +5,7 @@ const typography = tv({
   base: "cursor-default text-primary",
   variants: {
     type: {
-      "header-default": "font-rethink leading-[130%] font-bold text-[32px]",
+      "header-default": "font-rethink leading-[130%] font-bold",
       "content-default": "font-inter leading-[120%]"
     }
   }

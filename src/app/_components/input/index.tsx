@@ -5,7 +5,7 @@ const inputLabel = tv({
   base: "flex text-sm text-primary font-rethink whitespace-nowrap",
   variants: {
     type: {
-      outlined: "flex-col",
+      outlined: "flex-col gap-1",
       text: "items-center border-b last:border-0"
     }
   },

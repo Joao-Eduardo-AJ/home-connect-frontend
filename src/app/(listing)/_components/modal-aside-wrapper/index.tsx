@@ -1,19 +1,19 @@
-import { Typography } from "@/app/_components";
+import { Button, Typography } from "@/app/_components";
 import { X } from "@phosphor-icons/react/dist/ssr";
 import { cloneElement, ReactElement, ReactNode, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { IconButton } from "../icon-button";
 
 interface IButtonModalAsideWrapper {
-  asideTitle: string;
   button: ReactElement<any, any>;
   children: ReactNode;
+  type: "create" | "edit";
 }
 
 export function ButtonModalAsideWrapper({
-  asideTitle,
   button,
-  children
+  children,
+  type
 }: IButtonModalAsideWrapper) {
   const [open, setOpen] = useState(false);
 
@@ -31,25 +31,6 @@ export function ButtonModalAsideWrapper({
     }
   }
 
-  /*   function getButton() {
-    if (buttonType === "icon") {
-      return (
-        <IconButton className="group" onClick={onOpen}>
-          <PencilSimple
-            size={24}
-            className="transition-all duration-300 group-hover:scale-110"
-          />
-        </IconButton>
-      );
-    }
-    return (
-      <Button variant={{ type: "text", color: "primary" }} onClick={onOpen}>
-        <PencilSimple size={20} className="-mr-2" />
-        {buttonText}
-      </Button>
-    );
-  }
- */
   return (
     <>
       {cloneElement(button, { onClick: onOpen })}
@@ -60,11 +41,11 @@ export function ButtonModalAsideWrapper({
         >
           <aside
             ref={backdropRef}
-            className={`flex flex-col bg-white ${open ? "w-[434px] p-10" : "w-0 p-0"} transition-all duration-500`}
+            className={`flex h-dvh flex-col bg-white ${open ? (type === "edit" ? "w-[434px] p-10" : "w-[598px] p-10") : "w-0 p-0"} transition-all duration-500`}
           >
             <div className="flex items-center justify-between whitespace-nowrap border-b pb-3">
               <Typography variant="h4" className="text-2xl">
-                {asideTitle}
+                {type}
               </Typography>
               <IconButton onClick={onClose}>
                 <X size={24} />
