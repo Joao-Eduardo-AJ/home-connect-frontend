@@ -11,16 +11,17 @@ import {
   SectionListing,
   TablePagination,
   Table,
-  ButtonModalAlertWrapper,
-  ButtonModalAsideEdit
+  ModalDelete,
+  ModalAsideEdit
 } from "../_components";
 import { Button, SearchInput, Typography } from "@/app/_components";
 import { useState } from "react";
 import { data } from "../_mock";
-import { ButtonModalAsideWrapper } from "../_components/button-modal-aside-wrapper";
+import { ButtonModalAsideWrapper } from "../_components/modal-aside-wrapper";
 
 function Clients() {
   const [checkedClients, setCheckedClients] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
 
   function toggleChecks() {
     if (checkedClients.length) {
@@ -77,22 +78,18 @@ function Clients() {
                     </Button>
                   }
                 >
-                  <ButtonModalAsideEdit />
+                  <ModalAsideEdit />
                 </ButtonModalAsideWrapper>
-                <ButtonModalAlertWrapper
+                <ModalDelete
                   variant={{ type: "danger" }}
-                  button={
-                    <Button variant={{ type: "text", color: "danger" }}>
-                      <Trash size={20} className="-mr-2" />
-                      {`Delete  ( ${checkedCount} )`}
-                    </Button>
-                  }
+                  open={open}
+                  onClose={() => setOpen(false)}
                 >
                   <div className="flex flex-col gap-3">
                     <Typography variant="h6">{`Delete ${checkedCount} clients`}</Typography>
                     <Typography variant="p">{`Are you sure you want to delete ${checkedCount} clients?`}</Typography>
                   </div>
-                </ButtonModalAlertWrapper>
+                </ModalDelete>
               </div>
             </Table.Caption>
             <thead>
@@ -142,7 +139,7 @@ function Clients() {
                         </IconButton>
                       }
                     >
-                      <ButtonModalAsideEdit />
+                      <ModalAsideEdit />
                     </ButtonModalAsideWrapper>
                     <IconButton className="group" size="medium">
                       <Trash

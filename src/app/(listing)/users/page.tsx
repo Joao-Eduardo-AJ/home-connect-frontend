@@ -8,19 +8,26 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 import {
-  ButtonModalAlertWrapper,
-  ButtonModalAsideEdit,
+  ModalDelete,
+  ModalAsideEdit,
   EmptyState,
   IconButton,
   SectionListing,
   Table,
-  TablePagination
+  TablePagination,
+  ModalAsideCreate
 } from "../_components";
-import { ButtonModalAsideWrapper } from "../_components/button-modal-aside-wrapper";
+import { ButtonModalAsideWrapper } from "../_components/modal-aside-wrapper";
 import { data } from "../_mock";
+import { ModalSuccess } from "../_components/modal-success";
+
+type IModalOpened = "delete" | "success" | "";
 
 function Users() {
   const [checkedUsers, setCheckedUsers] = useState<string[]>([]);
+  const [selectedUser, setSelectedUser] = useState("");
+
+  const [modalOpened, setModalOpened] = useState<IModalOpened>("");
 
   function toggleChecks() {
     if (checkedUsers.length) {
@@ -40,6 +47,17 @@ function Users() {
     setCheckedUsers([...checkedUsers]);
   }
 
+  function handleSelectedUser(id: string) {
+    setSelectedUser(id);
+  }
+
+  function handleModalOpened(type: IModalOpened) {
+    /*   if (!type) {
+      handleSelectedUser("");
+    } */
+    setModalOpened(type);
+  }
+
   const checkedCount = checkedUsers.length;
 
   return (
@@ -54,10 +72,17 @@ function Users() {
         <Typography variant="h2">Users</Typography>
         <div className="flex gap-4">
           <SearchInput placeholder="Search by name" />
-          <Button>
-            <PlusCircle size={20} className="-mr-2" weight="bold" />
-            Add new user
-          </Button>
+          <ButtonModalAsideWrapper
+            type="create"
+            button={
+              <Button>
+                <PlusCircle size={20} className="-mr-2" weight="bold" />
+                Add new user
+              </Button>
+            }
+          >
+            <ModalAsideCreate />
+          </ButtonModalAsideWrapper>
         </div>
       </div>
       {!data.length ? (
@@ -69,7 +94,7 @@ function Users() {
               <Typography className="text-sm font-semibold">{`Selecionados: ${checkedCount}`}</Typography>
               <div className="flex">
                 <ButtonModalAsideWrapper
-                  asideTitle="Edit user"
+                  type="edit"
                   button={
                     <Button variant={{ type: "text", color: "primary" }}>
                       <PencilSimple size={20} className="-mr-2" />
@@ -77,22 +102,15 @@ function Users() {
                     </Button>
                   }
                 >
-                  <ButtonModalAsideEdit />
+                  <ModalAsideEdit action={() => handleModalOpened("success")} />
                 </ButtonModalAsideWrapper>
-                <ButtonModalAlertWrapper
-                  variant={{ type: "danger" }}
-                  button={
-                    <Button variant={{ type: "text", color: "danger" }}>
-                      <Trash size={20} className="-mr-2" />
-                      {`Delete  ( ${checkedCount} )`}
-                    </Button>
-                  }
+                <Button
+                  variant={{ type: "text", color: "danger" }}
+                  onClick={() => handleModalOpened("delete")}
                 >
-                  <div className="flex flex-col gap-3">
-                    <Typography variant="h6">{`Delete ${checkedCount} users`}</Typography>
-                    <Typography variant="p">{`Are you sure you want to delete ${checkedCount} users?`}</Typography>
-                  </div>
-                </ButtonModalAlertWrapper>
+                  <Trash size={20} className="-mr-2" />
+                  {`Delete ( ${checkedCount} )`}
+                </Button>
               </div>
             </Table.Caption>
             <thead>
@@ -115,49 +133,85 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              {data.map((user, index) => (
-                <Table.Row key={index}>
-                  <td className="pl-6 pr-3 text-center">
-                    <input
-                      type="checkbox"
-                      checked={checkedUsers.includes(user.id)}
-                      onChange={() => handleCheckedUsers(user.id)}
-                    />
-                  </td>
-                  <Table.Data>{user.name}</Table.Data>
-                  <Table.Data>{user.cpf}</Table.Data>
-                  <Table.Data>{user.birthdate}</Table.Data>
-                  <Table.Data>{user.phoneNumber}</Table.Data>
-                  <Table.Data>{user.email}</Table.Data>
-                  <Table.Data>{user.address}</Table.Data>
-                  <td className="flex gap-2 py-0 pl-3 pr-6">
-                    <ButtonModalAsideWrapper
-                      asideTitle="Edit user"
-                      button={
-                        <IconButton className="group" size="medium">
-                          <PencilSimple
-                            size={24}
-                            className="transition-all duration-300 group-hover:scale-110"
-                          />
-                        </IconButton>
-                      }
-                    >
-                      <ButtonModalAsideEdit />
-                    </ButtonModalAsideWrapper>
-                    <IconButton className="group" size="medium">
-                      <Trash
-                        size={24}
-                        className="transition-all duration-300 group-hover:scale-110"
+              {data.map((user, index) => {
+                const {
+                  address,
+                  birthdate,
+                  cpf,
+                  email,
+                  id,
+                  name,
+                  phoneNumber
+                } = user;
+                return (
+                  <Table.Row key={index}>
+                    <td className="pl-6 pr-3 text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkedUsers.includes(id)}
+                        onChange={() => handleCheckedUsers(id)}
                       />
-                    </IconButton>
-                  </td>
-                </Table.Row>
-              ))}
+                    </td>
+                    <Table.Data>{name}</Table.Data>
+                    <Table.Data>{cpf}</Table.Data>
+                    <Table.Data>{birthdate}</Table.Data>
+                    <Table.Data>{phoneNumber}</Table.Data>
+                    <Table.Data>{email}</Table.Data>
+                    <Table.Data>{address}</Table.Data>
+                    <td className="flex gap-2 py-0 pl-3 pr-6">
+                      <ButtonModalAsideWrapper
+                        type="edit"
+                        button={
+                          <IconButton
+                            className={!checkedCount ? "group" : ""}
+                            size="medium"
+                            disabled={!!checkedCount}
+                          >
+                            <PencilSimple
+                              size={24}
+                              className="transition-all duration-300 group-hover:scale-110"
+                            />
+                          </IconButton>
+                        }
+                      >
+                        <ModalAsideEdit
+                          action={() => handleModalOpened("success")}
+                        />
+                      </ButtonModalAsideWrapper>
+                      <IconButton
+                        className={!checkedCount ? "group" : ""}
+                        size="medium"
+                        onClick={() => {
+                          handleSelectedUser(id);
+                          handleModalOpened("delete");
+                        }}
+                        disabled={!!checkedCount}
+                      >
+                        <Trash
+                          size={24}
+                          className="transition-all duration-300 group-hover:scale-110"
+                        />
+                      </IconButton>
+                    </td>
+                  </Table.Row>
+                );
+              })}
             </tbody>
           </Table.Root>
           <TablePagination count={300} />
         </div>
       )}
+      <ModalDelete
+        open={modalOpened === "delete"}
+        onClose={() => handleModalOpened("")}
+        action={() => console.log("")}
+        selected={checkedCount || selectedUser}
+      />
+      <ModalSuccess
+        open={modalOpened === "success"}
+        onClose={() => handleModalOpened("")}
+        selected={checkedCount || selectedUser}
+      />
     </SectionListing>
   );
 }
