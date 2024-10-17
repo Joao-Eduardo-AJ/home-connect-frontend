@@ -4,7 +4,7 @@ interface IModalAsideEdit {
   action: () => void;
 }
 
-export function ModalAsideEdit({action}: IModalAsideEdit) {
+export function ModalAsideEdit({ action }: IModalAsideEdit) {
   return (
     <div className="relative h-full">
       <div className="h-[calc(100%-105px)] overflow-auto py-10">

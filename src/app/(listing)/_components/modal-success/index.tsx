@@ -18,6 +18,7 @@ export function ModalSuccess({
   ...props
 }: IModalSuccess) {
   const backdropRef = useRef<HTMLDivElement>(null);
+  if (typeof document === "undefined") return <></>;
 
   function handleBackdropClick(event: React.MouseEvent<HTMLDivElement>) {
     if (

@@ -19,6 +19,7 @@ export function ModalDelete({
   ...props
 }: IModalDelete) {
   const backdropRef = useRef<HTMLDivElement>(null);
+  if (typeof document === "undefined") return <></>;
 
   function handleBackdropClick(event: React.MouseEvent<HTMLDivElement>) {
     if (

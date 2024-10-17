@@ -7,7 +7,7 @@ import {
   CheckCircle,
   MapPin
 } from "@phosphor-icons/react/dist/ssr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IModalAsideCreate {}
 
@@ -17,6 +17,12 @@ export function ModalAsideCreate({}: IModalAsideCreate) {
   const handleStep = (newStep: number) =>
     newStep >= 0 && newStep <= 2 && setStep(newStep);
 
+  /*   const verifyStep = (newStep: number) =>
+    newStep !== step && handleStep(newStep); */
+
+  useEffect(() => {
+    console.log(step);
+  }, [step]);
   return (
     <div className="flex h-full flex-col">
       <div className="flex gap-3 border-b border-primary-border py-10">
@@ -39,17 +45,62 @@ export function ModalAsideCreate({}: IModalAsideCreate) {
           title="Location"
         />
       </div>
-      <div className="flex h-full flex-col gap-10 py-10">
-        <Input
-          variant={{ type: "outlined" }}
-          label="Phone"
-          placeholder="Phone"
-        />
-        <Input
-          variant={{ type: "outlined" }}
-          label="Email"
-          placeholder="Email"
-        />
+      <div className="h-full">
+        <div className={`flex py-10`}>
+          <div
+            className={`flex flex-col gap-10 transition-all duration-[400ms] ease-in ${step === 0 ? "w-full" : "invisible w-0"}`}
+          >
+            <Input
+              variant={{ type: "outlined" }}
+              label="Name"
+              placeholder="Name"
+            />
+            <Input
+              variant={{ type: "outlined" }}
+              label="CPF"
+              placeholder="CPF"
+            />
+            <Input
+              variant={{ type: "outlined" }}
+              label="Birthday"
+              placeholder="Ex.: 07/05/2000"
+            />
+            <Input variant={{ type: "outlined" }} label="ID" placeholder="ID" />
+          </div>
+          <div
+            className={`flex flex-col gap-10 transition-all duration-[400ms] ease-in ${step === 1 ? "w-full" : "invisible w-0"}`}
+          >
+            <Input
+              variant={{ type: "outlined" }}
+              label="Phone"
+              placeholder="Phone"
+            />
+            <Input
+              variant={{ type: "outlined" }}
+              label="Email"
+              placeholder="Email"
+            />
+          </div>
+          <div
+            className={`flex flex-col gap-10 transition-all duration-[400ms] ease-in ${step === 2 ? "w-full" : "invisible w-0"}`}
+          >
+            <Input
+              variant={{ type: "outlined" }}
+              label="CEP"
+              placeholder="CEP"
+            />
+            <Input
+              variant={{ type: "outlined" }}
+              label="State"
+              placeholder="State"
+            />
+            <Input
+              variant={{ type: "outlined" }}
+              label="City"
+              placeholder="City"
+            />
+          </div>
+        </div>
       </div>
       <div className="flex gap-4">
         <Button

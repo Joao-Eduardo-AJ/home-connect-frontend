@@ -70,7 +70,7 @@ function Clients() {
               <Typography className="text-sm font-semibold">{`Selecionados: ${checkedCount}`}</Typography>
               <div className="flex">
                 <ButtonModalAsideWrapper
-                  asideTitle="Edit client"
+                  type="edit"
                   button={
                     <Button variant={{ type: "text", color: "primary" }}>
                       <PencilSimple size={20} className="-mr-2" />
@@ -78,10 +78,10 @@ function Clients() {
                     </Button>
                   }
                 >
-                  <ModalAsideEdit />
+                  <ModalAsideEdit action={() => console.log("")} />
                 </ButtonModalAsideWrapper>
                 <ModalDelete
-                  variant={{ type: "danger" }}
+                  selected={checkedCount}
                   open={open}
                   onClose={() => setOpen(false)}
                 >
@@ -129,7 +129,7 @@ function Clients() {
                   <Table.Data>{client.address}</Table.Data>
                   <td className="flex gap-2 py-0 pl-3 pr-6">
                     <ButtonModalAsideWrapper
-                      asideTitle="Edit Clients"
+                      type="create"
                       button={
                         <IconButton className="group" size="medium">
                           <PencilSimple
@@ -139,7 +139,7 @@ function Clients() {
                         </IconButton>
                       }
                     >
-                      <ModalAsideEdit />
+                      <ModalAsideEdit action={() => console.log("")} />
                     </ButtonModalAsideWrapper>
                     <IconButton className="group" size="medium">
                       <Trash
