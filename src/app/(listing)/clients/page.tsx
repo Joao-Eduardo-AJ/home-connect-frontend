@@ -12,12 +12,12 @@ import {
   TablePagination,
   Table,
   ModalDelete,
-  ModalAsideEdit
+  ModalAsideEdit,
+  ButtonModalAsideWrapper
 } from "../_components";
 import { Button, SearchInput, Typography } from "@/app/_components";
 import { useState } from "react";
 import { data } from "../_mock";
-import { ButtonModalAsideWrapper } from "../_components/modal-aside-wrapper";
 
 function Clients() {
   const [checkedClients, setCheckedClients] = useState<string[]>([]);
@@ -52,7 +52,9 @@ function Clients() {
         />
       </IconButton>
       <div className="flex items-center justify-between">
-        <Typography variant="h2">Clients</Typography>
+        <Typography variant="h2" className="text-[32px]">
+          Clients
+        </Typography>
         <div className="flex gap-4">
           <SearchInput placeholder="Search by name" />
           <Button>

@@ -18,10 +18,10 @@ export default function NavAside() {
         <div className="flex">
           <Logo />
           <div className="grid items-center">
-            <Typography variant="h3" className="text-base leading-3">
+            <Typography variant="h3" className="leading-[6px]">
               Home
             </Typography>
-            <Typography variant="h3" className="text-base leading-3">
+            <Typography variant="h3" className="leading-[6px]">
               Connect
             </Typography>
           </div>

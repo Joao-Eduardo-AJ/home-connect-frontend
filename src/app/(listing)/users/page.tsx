@@ -15,11 +15,11 @@ import {
   SectionListing,
   Table,
   TablePagination,
-  ModalAsideCreate
+  ModalAsideCreate,
+  ButtonModalAsideWrapper,
+  ModalSuccess
 } from "../_components";
-import { ButtonModalAsideWrapper } from "../_components/modal-aside-wrapper";
 import { data } from "../_mock";
-import { ModalSuccess } from "../_components/modal-success";
 
 type IModalOpened = "delete" | "success" | "";
 
@@ -69,7 +69,9 @@ function Users() {
         />
       </IconButton>
       <div className="flex items-center justify-between">
-        <Typography variant="h2">Users</Typography>
+        <Typography variant="h2" className="text-[32px]">
+          Users
+        </Typography>
         <div className="flex gap-4">
           <SearchInput placeholder="Search by name" />
           <ButtonModalAsideWrapper

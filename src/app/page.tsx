@@ -23,8 +23,8 @@ function Home() {
         </div>
         <article className="grid w-full max-w-[496px] gap-10 rounded-2xl bg-white p-10">
           <header className="grid gap-2 text-center">
-            <Typography variant="h2">Log into your account</Typography>
-            <Typography className="text-secondary">
+            <Typography variant="h2" className="text-[32px]">Log into your account</Typography>
+            <Typography className="text-secondary text-sm">
               Contact your manager to have your access
             </Typography>
           </header>
@@ -55,10 +55,10 @@ function Home() {
       </section>
       <aside className="row relative grid w-full grid-rows-12 justify-center overflow-hidden bg-highlight">
         <div className="z-10 row-start-3 text-center">
-          <Typography variant="h3" className="text-white">
+          <Typography variant="h3" className="text-white text-[32px]">
             Welcome!
           </Typography>
-          <Typography className="text-white">
+          <Typography className="text-white text-sm">
             Stay awere, stay ahead, stay compliant.
           </Typography>
         </div>
